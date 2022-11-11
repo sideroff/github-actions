@@ -1,0 +1,31 @@
+name: deploy_dev
+
+on:
+  push:
+    branches:
+      - '*'
+    tags-ignore:
+      - '*'
+
+env:
+  TEST: test
+  TEST2: 0.0.1-develop.exp.sha.${GITHUB_SHA::6} # semver version
+
+jobs:
+  job1: 
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: env vars
+        shell: bash
+        run: |
+          echo "TEST3=0.0.1-develop.exp.sha.${GITHUB_SHA::6}" >> $GITHUB_OUTPUT
+          echo "TEST4=${{ env.TEST }}/${{ env.TEST2 }}" >> $GITHUB_OUTPUT
+
+      - name: test
+        shell: bash
+        run: |
+          echo "${{ env.TEST }}"
+          echo "${{ env.TEST2 }}"
+          echo "${{ env.TEST3 }}"
+          echo "${{ env.TEST4 }}"
+     
