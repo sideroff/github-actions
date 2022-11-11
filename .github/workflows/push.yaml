@@ -18,8 +18,8 @@ jobs:
       - name: env vars
         shell: bash
         run: |
-          echo "TEST3=0.0.1-develop.exp.sha.${GITHUB_SHA::6}" >> $GITHUB_OUTPUT
-          echo "TEST4=${{ env.TEST }}/${{ env.TEST2 }}" >> $GITHUB_OUTPUT
+          echo "TEST3=0.0.1-develop.exp.sha.${GITHUB_SHA::6}" >> $GITHUB_ENV
+          echo "TEST4=${{ env.TEST }}/${{ env.TEST2 }}" >> $GITHUB_ENV
 
       - name: test
         shell: bash
